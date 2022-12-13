@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/WEB-INF/layout/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="form1">
+				<p:growl id="growlReportador" showDetail="true" sticky="true"></p:growl>
+				<p:panel id="panelReporte"
+					header="Reporte Estado de Situación Financiera"
+					styleClass="green col-md-9 col-centered row-centered shadow-panel">
+					<p:commandButton style="display: none" id="downXls" ajax="false"
+						onclick="PrimeFaces.monitorDownload(start, stop);">
+						<p:fileDownload value="#{rEDOSITFINMB2.fileXls}" />
+					</p:commandButton>
+					<p:commandButton style="display: none" id="downTxt" ajax="false"
+						onclick="PrimeFaces.monitorDownload(start, stop);">
+						<p:fileDownload value="#{rEDOSITFINMB2.fileTxt}" />
+					</p:commandButton>
+					<p:panelGrid columns="7" styleClass="col-centered ui-noborder">
+
+						<h:outputText value="Mes final año anterior: "
+							rendered="#{rEDOSITFINMB2.showMesAnterior}" />
+						<p:selectOneMenu editable="false"
+							rendered="#{rEDOSITFINMB2.showMesAnterior}"
+							value="#{rEDOSITFINMB2.mesFinalAnterior}">
+							<f:selectItems
+								value="#{rEDOSITFINMB2.listMes}" var="p"
+								itemValue="#{p}" itemLabel="#{p}" />
+						</p:selectOneMenu>
+						<h:outputText value="Mes final año actual: " />
+						<p:selectOneMenu editable="false"
+							value="#{rEDOSITFINMB2.mesFinalActual}">
+							<f:selectItems value="#{rEDOSITFINMB2.listMes}" var="p"
+								itemValue="#{p}" itemLabel="#{p}" />
+						</p:selectOneMenu>
+						<p:commandLink title="EXCEL"
+							update=":form1:growlReportador, :form1:downXls"
+							actionListener="#{rEDOSITFINMB2.downloadXls}">
+							<p:graphicImage value="excel.png" width="24" />
+
+						</p:commandLink>
+						<p:commandLink actionListener="#{rEDOSITFINMB2.downloadTxt}"
+							update=":form1:growlReportador, :form1:downTxt" title="TXT">
+							<p:graphicImage value="txt.png" width="24" />
+
+						</p:commandLink>
+						<p:commandButton id="generateportepdf"
+							onstart="PF('blockUIWidget').block()"
+							oncomplete="PF('blockUIWidget').unblock()"
+							action="#{rEDOSITFINMB2.viewPdf}" value="Correcto"
+							update="form1:inlinePdf, :form1:growlReportador"
+							styleClass="btn btn-default">
+						</p:commandButton>
+					</p:panelGrid>
+
+
+
+
+					<p:panel id="inlinePdf" style="border:0px"
+						visible="#{rEDOSITFINMB2.uuid ne null}">
+
+						<object type="application/pdf"
+							data="#{request.contextPath}/GetFileInline?uuid=#{rEDOSITFINMB2.uuid}&amp;filename=#{rEDOSITFINMB2.endFilename}"
+							height="380px" width="100%"> Tu browser no puede
+							desplegar el PDF. </object>
+
+					</p:panel>
+
+				</p:panel>
+				<pe:blockUI widgetVar="blockUIWidget">
+					<h:panelGrid columns="2">
+						<h:graphicImage value="indice.png"
+							style="margin-right: 12px; vertical-align: middle;" />
+						<h:outputText value="Please wait..." style="white-space: nowrap;" />
+					</h:panelGrid>
+				</pe:blockUI>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

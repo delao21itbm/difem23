@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/WEB-INF/layout/layout.xhtml">
+		<ui:define name="content">
+
+
+			<style>
+.ui-picklist .ui-picklist-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+	height: 200;
+	width: 100%;
+}
+</style>
+			<h:form id="form1">
+
+				<pe:blockUI widgetVar="blockUIWidget" centerX="false">
+					<h:panelGrid columns="1">
+
+						<h:graphicImage value="../catalogs/indice.png"
+							style="margin-right: 12px; vertical-align: middle;" />
+						<h:outputText value="Por favor espere..."
+							style="white-space: nowrap;" />
+					</h:panelGrid>
+				</pe:blockUI>
+				<p:focus />
+
+				<p:remoteCommand name="rc" update="form1:pojoPickList" />
+
+				<p:messages id="messages" showDetail="true" closable="true" />
+
+
+				<p:panel id="basic2" header="Búsqueda de Información Presupuestal"
+					styleClass="green col-md-8 col-centered row-centered shadow-panel">
+
+					<p:panel id="basic3"
+						styleClass="green col-md-10 col-centered row-centered shadow-panel">
+						<p:panelGrid column="3" styleClass="ui-noborder">
+
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Movimiento" />
+								</p:column>
+								<p:column>
+									<p:outputLabel value="Mes" />
+								</p:column>
+								<p:column>
+									<p:outputLabel value=" " />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:selectOneMenu converter="genericConverter"
+										style="width:350px"
+										value="#{presupuestoEgresosMB.tipoMovimiento}">
+
+
+										<f:selectItems value="#{presupuestoEgresosMB.tipoMovimientos}"
+											var="area" itemLabel="#{area.movimiento}" itemValue="#{area}" />
+										<p:ajax event="change"
+											listener="#{presupuestoEgresosMB.activarBandera()}" />
+									</p:selectOneMenu>
+								</p:column>
+								<p:column>
+
+									<p:selectOneMenu id="mes" value="#{presupuestoEgresosMB.mes}"
+										style="width:70px">
+										<f:selectItems value="#{presupuestoEgresosMB.meses}" var="mes"
+											itemValue="#{mes}" itemLabel="#{mes}" />
+									</p:selectOneMenu>
+								</p:column>
+
+
+
+								<p:column>
+									<p:commandButton value="Generar Folio"
+										action="#{presupuestoEgresosMB.generateInvoice}"
+										update="formDetalles:pgrid, formDetalles:dtoEdit, formDetalles:foliotemporal, formDetalles:btnAceptar,:form1:messages, formDetalles:dtoAmpliacion, formDetalles:btbAmplicion,formDetalles:lblTReducciones , formDetalles:advanced" />
+								</p:column>
+							</p:row>
+
+						</p:panelGrid>
+						<p:panel>
+							<p:panelGrid column="1">
+								<p:commandButton value="Limpiar" id="limpiar"
+									actionListener="#{presupuestoEgresosMB.cleanFilters()}"
+									update="form1:pojoPickList"></p:commandButton>
+							</p:panelGrid>
+						</p:panel>
+					</p:panel>
+
+					<p:pickList id="pojoPickList"
+						value="#{presupuestoEgresosMB.dualList}" var="detalle"
+						itemValue="#{detalle}" showSourceFilter="true"
+						showTargetFilter="true" filterMatchMode="contains"
+						itemLabel="#{detalle}" showCheckbox="true"
+						addAllLabel="Agregar Todos" responsive="true">
+
+						<f:facet name="sourceCaption">Cuentas para Reducción</f:facet>
+						<f:facet name="targetCaption">Cuentas Seleccionadas para Reducción</f:facet>
+						<p:ajax event="transfer"
+							listener="#{presupuestoEgresosMB.onTransfer}" />
+						<p:ajax event="select" listener="#{presupuestoEgresosMB.onSelect}" />
+						<p:ajax event="unselect"
+							listener="#{presupuestoEgresosMB.onUnselect}" />
+						<p:ajax event="reorder"
+							listener="#{presupuestoEgresosMB.onReorder}" />
+
+						<p:column style="width:94%">
+							<div style="width: 100%" class="flex align-items-center">
+
+								<h:outputText value="#{detalle} " />
+								<!-- <h:outputText value="#{detalle.autoAbril}">
+									<f:convertNumber pattern="#,##0.00" locale="es_MX" />
+								</h:outputText> -->
+
+							</div>
+						</p:column>
+					</p:pickList>
+				</p:panel>
+
+			</h:form>
+			<h:form id="formDetalles" styleClass="green">
+				<p:dialog id="dialogMovPres" header="Movimiento Presupuestal"
+					widgetVar="modalDetalles" modal="true" height="500" width="800"
+					showEffect="fade" hideEffect="fade" resizable="true">
+
+
+
+
+
+					<p:panel id="basic4"
+						styleClass="green col-md-10 col-centered row-centered shadow-panel">
+						<p:panel styleClass="green col-md-6 col-centered row-centered">
+							<p:panelGrid column="1" styleClass="ui-noborder" id="pgrid1">
+								<p:row>
+									<p:column>
+										<p:outputLabel value="Folio del Movimiento" />
+
+									</p:column>
+
+									<p:column>
+										<p:outputLabel id="foliotemporal"
+											value="#{presupuestoEgresosMB.folioTemporal}">
+											<f:convertNumber pattern="000000" />
+										</p:outputLabel>
+
+									</p:column>
+								</p:row>
+
+							</p:panelGrid>
+						</p:panel>
+						<p:panel styleClass="green col-md-10 col-centered row-centered">
+							<p:panelGrid column="3" styleClass="ui-noborder" id="pgrid">
+
+								<p:row>
+									<p:column>
+										<p:outputLabel value="Movimiento" />
+									</p:column>
+									<p:column>
+										<p:outputLabel value="Mes" />
+									</p:column>
+									<p:column>
+										<p:outputLabel value=" " />
+									</p:column>
+								</p:row>
+
+								<p:row>
+									<p:column>
+										<h:outputLabel
+											value="#{presupuestoEgresosMB.tipoMovimiento.movimiento}" />
+
+									</p:column>
+									<p:column>
+										<h:outputLabel value="#{presupuestoEgresosMB.mes}" />
+									</p:column>
+
+
+
+									<p:column>
+
+									</p:column>
+								</p:row>
+
+
+
+
+							</p:panelGrid>
+						</p:panel>
+					</p:panel>
+
+
+					<p:dataTable id="dtoEdit" var="dto"
+						rendered="#{presupuestoEgresosMB.banderaVisible}"
+						value="#{presupuestoEgresosMB.listDto}" editable="true"
+						rowIndexVar="index" style="margin-bottom:20px">
+						<p:ajax event="rowEditInit"
+							listener="#{presupuestoEgresosMB.onInitRowEdit}"
+							oncomplete="$('.ui-row-editor span.ui-icon-pencil').each(function(){$(this).css('visibility','hidden')});" />
+						<p:ajax event="rowEdit"
+							update="formDetalles:mensaje,formDetalles:totalReducciones,formDetalles:advanced,formDetalles:dtoAmpliacion,formDetalles:btbAmplicion,reduInput"
+							listener="#{presupuestoEgresosMB.onRowEdit}"
+							oncomplete="$('.ui-row-editor span.ui-icon-pencil').each(function(){$(this).css('visibility','visible')});" />
+
+						<p:ajax event="rowEditCancel" update="reduInput"
+							listener="#{presupuestoEgresosMB.onRowCancel}"
+							onstart=" $('.ui-row-editor span.ui-icon-pencil').each(function(){$(this).css('visibility','visible')});" />
+						<p:column headerText="Area" style="width:6%">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{dto.area}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="areaInput" value="#{dto.area}"
+										style="width:80%" disabled="true" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Dependencia">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{dto.dependencia}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="depInput" value="#{dto.dependencia}"
+										style="width:100%" disabled="true" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Programa" style="width:15%">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{dto.proyecto}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="progInput" value="#{dto.proyecto}"
+										style="width:100%" disabled="true" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Fuente">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{dto.fuente}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="fuenInput" value="#{dto.fuente}"
+										style="width:100%" disabled="true" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Partida">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{dto.partida}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="partInput" value="#{dto.partida}"
+										style="width:100%" disabled="true" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Reducciones">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{dto.total}">
+										<f:convertNumber pattern="###,###,##0.00" type="number" />
+									</h:outputText>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="carInput" value="#{dto.total}"
+										style="width:100%" disabled="true">
+										<p:ajax event="blur"
+											listener="#{presupuestoEgresosMB.quitarCero(index)}"
+											update="carInput" />
+										<f:convertNumber pattern="###,###,##0.00" type="number" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Reducción">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{dto.reduccion}">
+										<f:convertNumber pattern="###,###,##0.00" type="number" />
+									</h:outputText>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="reduInput" value="#{dto.reduccion}"
+										style="width:100%" disable="true">
+										<f:convertNumber pattern="###,###,##0.00" type="number" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:6rem">
+							<p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit"
+								saveTitle="Save Row" />
+						</p:column>
+						<p:column style="width:6rem">
+							<p:commandButton icon="ui-icon-trash"
+								actionListener="#{presupuestoEgresosMB.eliminarAmpliacion(index)}"
+								update="formDetalles:dtoEdit,formDetalles:totalReducciones,formDetalles:advanced,formDetalles:dtoAmpliacion,formDetalles:btbAmplicion" />
+						</p:column>
+
+					</p:dataTable>
+					<p:messages id="mensaje" showDetail="true" closable="true" />
+					<p:panel id="totReducciones"
+						rendered="#{presupuestoEgresosMB.banderaVisible}">
+						<p:outputLabel value="Total Reducciones" id="lblTReducciones"
+							style="margin-left: 65%;position: initial;" />
+						<p:outputLabel value="#{presupuestoEgresosMB.totalReduccion}"
+							id="totalReducciones"
+							rendered="#{presupuestoEgresosMB.banderaVisible}"
+							style="margin-left: 10%;position: absolute;">
+							<f:convertNumber pattern="###,###,##0.00" type="number" />
+						</p:outputLabel>
+					</p:panel>
+
+					<p:panel id="pcombo"
+						rendered="#{presupuestoEgresosMB.banderaVisible}">
+						<p:selectManyMenu id="advanced"
+							disabled="#{presupuestoEgresosMB.banderaReduccion}"
+							value="#{presupuestoEgresosMB.selectDto}"
+							style="width:100%;height:100px !important"
+							converter="#{countryConverter}" var="c" filter="true"
+							scrollHeight="60" filterMatchMode="contains" showCheckbox="true"
+							styleClass="manymenu-advanced">
+							<f:selectItems value="#{presupuestoEgresosMB.listaIntermedia}"
+								var="dto" itemLabel="#{dto}" itemValue="#{dto}" />
+
+							<p:column>
+								<h:outputText value="#{c}" />
+							</p:column>
+
+							<p:ajax listener="#{presupuestoEgresosMB.enviarDatos}" />
+						</p:selectManyMenu>
+						<p:panel styleClass="green ui-noborder">
+							<p:commandButton value="Generar" id="btbAmplicion"
+								rendered="#{presupuestoEgresosMB.banderaVisible}"
+								disabled="#{presupuestoEgresosMB.banderaReduccion}"
+								style="margin-left: 85%;position: initial;"
+								actionListener="#{presupuestoEgresosMB.generarAmpliacion}"
+								update=":formDetalles:dtoAmpliacion" />
+						</p:panel>
+
+					</p:panel>
+
+					<p:panel>
+						<p:dataTable id="dtoAmpliacion" var="ampliacion"
+							disabled="#{presupuestoEgresosMB.banderaReduccion}"
+							value="#{presupuestoEgresosMB.listaDtoAmpliacion}"
+							rowIndexVar="index" editable="true" style="margin-bottom:40px">
+
+							<p:ajax event="rowEdit"
+								listener="#{presupuestoEgresosMB.onRowEditAmpliaciones}"
+								update="formDetalles:totalAmpliaciones, formDetalles:btnAceptar, formDetalles:lblTAmpliaciones,form1:messages " />
+							<p:ajax event="rowEditCancel"
+								listener="#{presupuestoEgresosMB.onRowCancel}"
+								update="formDetalles:totalAmpliaciones, formDetalles:btnAceptar, formDetalles:lblTAmpliaciones" />
+
+							<p:column headerText="Area" style="width:6%">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{ampliacion.area}" />
+									</f:facet>cion
+									<f:facet name="input">
+										<p:inputText id="area2Input" value="#{ampliacion.area}"
+											style="width:100%" disabled="true" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Dependencia">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{ampliacion.dependencia}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="dep2Input" value="#{ampliacion.dependencia}"
+											style="width:100%" disabled="true" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Programa" style="width:15%">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{ampliacion.proyecto}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="prog2Input" value="#{ampliacion.proyecto}"
+											style="width:100%" disabled="true" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Fuente">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{ampliacion.fuente}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="fuen2Input" value="#{ampliacion.fuente}"
+											style="width:100%" disabled="true" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Partida">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{ampliacion.partida}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="part2Input" value="#{ampliacion.partida}"
+											style="width:100%" disabled="true" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Cargo">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{ampliacion.total}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="car2Input" value="#{ampliacion.total}"
+											style="width:100%" disabled="true">
+
+										</p:inputText>
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="Ampliacion">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{ampliacion.ampliacion}">
+											<f:convertNumber pattern="###,###,##0.00" type="number" />
+										</h:outputText>
+									</f:facet>
+									<f:facet name="input">
+										<p:inputText id="redu2Input" value="#{ampliacion.ampliacion}"
+											style="width:100%" disable="true">
+											<f:convertNumber pattern="###,###,##0.00" type="number" />
+										</p:inputText>
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+
+							<p:column style="width:6rem">
+								<p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit"
+									saveTitle="Save Row" />
+							</p:column>
+							<p:column style="width:6rem">
+								<p:commandButton icon="ui-icon-trash"
+									actionListener="#{presupuestoEgresosMB.eliminarAmpliaciones(index)}"
+									update="formDetalles:dtoAmpliacion,formDetalles:totalAmpliaciones" />
+							</p:column>
+						</p:dataTable>
+						<p:outputLabel value="Total Ampliaciones" id="lblTAmpliaciones"
+							style="margin-left: 65%;position: initial;">
+
+
+						</p:outputLabel>
+						<p:outputLabel value="#{presupuestoEgresosMB.totalAmpliacion}"
+							id="totalAmpliaciones"
+							style="margin-left: 10%;position: absolute;" />
+					</p:panel>
+
+
+
+					<p:panel>
+						<p:commandButton value="Aceptar" id="btnAceptar"
+							onclick="PF('modalDetalles').hide()"
+							actionListener="#{presupuestoEgresosMB.saveMovement()}"
+							disabled="#{presupuestoEgresosMB.banderaEnviar}"
+							style="margin-left: 85%;"
+							update="formDetalles:pgrid, formDetalles:dtoEdit,formDetalles:totReducciones,formDetalles:pcombo,formDetalles:btbAmplicion,formDetalles:dtoAmpliacion,formDetalles:lblTReducciones,formDetalles:lblTAmpliaciones,form1:pojoPickList,formDetalles:totalAmpliaciones, formDetalles:advanced" />
+					</p:panel>
+
+				</p:dialog>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

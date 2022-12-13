@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/WEB-INF/layout/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="form1">
+				<p:panel id="panelButton"
+					header="Consulta del Presupuesto de Egresos"
+					style="width:100%; background-color: #E8ECED;"
+					styleClass="green col-centered row-centered shadow-panel">
+				</p:panel>
+				<p:messages id="messagesEdit" showDetail="true" closable="true" />
+				<p:remoteCommand name="findAcc"
+					actionListener="#{egresoDetalladoConsultaMB.cargarEgresos}"
+					update=":form1:messagesEdit,  :form1:object"
+					onstart="PF('blockUIWidget').block();"
+					oncomplete="PF('blockUIWidget').unblock(); " />
+				<p:focus context="mesPanel" />
+				<pe:blockUI widgetVar="blockUIWidget" centerX="false">
+					<h:panelGrid columns="2">
+						<h:graphicImage value="../catalogs/indice.png"
+							style="margin-right: 12px; vertical-align: middle;" />
+						<h:outputText value="Por favor espere..."
+							style="white-space: nowrap;" />
+					</h:panelGrid>
+				</pe:blockUI>
+				<p:panelGrid id="data" columns="1" styleClass="ui-noborder">
+					<p:panelGrid columns="5" id="mesPanel"
+						styleClass="green col-centered row-centered  ui-noborder">
+						<h:outputText value="Area: " />
+						<h:outputText value="Dependencia: " />
+						<h:outputText value="Proyecto: " />
+						<h:outputText value="Fuente: " />
+						<h:outputText value="Partida: " />
+
+						<p:inputText id="area" size="3" maxlength="3"
+							value="#{egresoDetalladoConsultaMB.area}">
+						</p:inputText>
+						<p:inputText id="dependencia" size="10" maxlength="10"
+							value="#{egresoDetalladoConsultaMB.dependencia}">
+						</p:inputText>
+						<p:inputText id="proyecto" size="12" maxlength="12"
+							value="#{egresoDetalladoConsultaMB.proyecto}">
+						</p:inputText>
+						<p:inputText id="fuente" size="8" maxlength="8"
+							value="#{egresoDetalladoConsultaMB.fuente}">
+						</p:inputText>
+						<p:inputText id="partida" size="4" maxlength="4"
+							value="#{egresoDetalladoConsultaMB.partida}">
+						</p:inputText>
+
+
+					</p:panelGrid>
+					<p:panelGrid columns="2"
+						styleClass="col-centered row-centered  ui-noborder">
+						<p:commandButton value="Buscar" id="search"
+							onmousedown="jQuery('.ui-paginator-first').click();"
+							oncomplete="findAcc();" />
+						<p:commandButton value="Limpiar" id="clean"
+							style=" margin-left: 15px; "
+							update=":form1:messagesEdit, :form1:object " immediate="true"
+							ajax="false"
+							actionListener="#{egresoDetalladoConsultaMB.limpiar}"
+							onstart="PF('blockUIWidget').block()">
+							<p:resetInput target="mesPanel" />
+						</p:commandButton>
+					</p:panelGrid>
+
+					<p:panel id="basic2" header="Egresos Detallado"
+						styleClass="green col-md-12 col-centered row-centered shadow-panel">
+						<p:dataTable id="object" var="car"
+							value="#{egresoDetalladoConsultaMB.egresos}"
+							rowsPerPageTemplate="15,25,50,100"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							currentPageReportTemplate="{startRecord} a {endRecord} de {totalRecords} registros"
+							styleClass="table-detallado" scrollable="true" scrollWidth="60%"
+							frozenColumns="5" selectionMode="single" rowKey="#{car.id}"
+							paginator="true" paginatorPosition="top" rows="15">
+							<p:column headerText="Area" width="10px">
+								<h:outputText value="#{car.area.clave}" />
+							</p:column>
+							<p:column headerText="Dependencia" width="30%">
+								<h:outputText value="#{car.dependencia.clvdep}" />
+							</p:column>
+							<p:column headerText="Proyecto" width="35%">
+								<h:outputText value="#{car.proyecto.campo7}" />
+							</p:column>
+							<p:column headerText="Fuente Fin." width="35%">
+								<h:outputText
+									value="#{car.fuente.cuenta}#{car.fuente.scta}#{car.fuente.sscta}#{car.fuente.ssscta}" />
+							</p:column>
+							<p:column headerText="Partida" width="4%">
+								<h:outputText value="#{car.partida.clvgas}" />
+							</p:column>
+							<p:column headerText="Total" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.total}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Enero" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoEnero}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Febrero" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoFebrero}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Marzo" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoMarzo}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Abril" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoAbril}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Mayo" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoEnero}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Junio" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoFebrero}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Julio" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoMarzo}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Agosto" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoAbril}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Septiembre" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoEnero}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Octubre" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoFebrero}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Noviembre" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoMarzo}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Diciembre" width="100"
+								style="text-align: right;">
+								<h:outputText value="#{car.autoAbril}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+					<!-- 
+					<p:panel id="basic" header="Egresos Detallado"
+						styleClass="green col-md-12 col-centered row-centered shadow-panel">
+						<p:dataTable id="object1" var="detalle"
+							value="#{egresoDetalladoConsultaMB.egresos}"
+							rowKey="#{detalle.id}" selectionMode="single" paginator="true"
+							lazy="true" rows="10" paginatorPosition="bottom"
+							styleClass="green col-centered row-centered shadow-panel"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							scrollable="true" scrollWidth="750" frozenColumns="5">
+							<p:column style="text-align: center !important; padding:0;"
+								headerText="Area" width="15">
+								<h:outputText value="#{detalle.area.clave}" />
+							</p:column>
+							<p:column style="text-align: center !important; padding:0;"
+								headerText="Dependencia" width="30">
+								<h:outputText value="#{detalle.dependencia.clvdep}" />
+							</p:column>
+							<p:column style="text-align: center !important; padding:0;"
+								headerText="Proyecto" width="30">
+								<h:outputText value="#{detalle.proyecto.campo7}" />
+							</p:column>
+							<p:column style="text-align: center !important; padding:0;"
+								headerText="F. Financiamiento" width="30">
+								<h:outputText
+									value="#{detalle.fuente.cuenta}#{detalle.fuente.scta}#{detalle.fuente.sscta}#{detalle.fuente.ssscta}" />
+							</p:column>
+							<p:column style="text-align: center !important; padding:0;"
+								headerText="Partida" width="20">
+								<h:outputText value="#{detalle.partida.clvgas}" />
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Total" width="60">
+								<h:outputText value="#{detalle.total}">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Enero" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoEnero}" style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Febrero" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoFebrero}"
+									style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Marzo" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoMarzo}" style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Abril" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoAbril}" style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Mayo" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoMayo}" style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Junio" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoJunio}" style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Julio" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoJulio}" style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Agosto" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoAgosto}" style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Septiembre" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoSeptiembre}"
+									style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Octubre" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoOctubre}"
+									style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Noviembre" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoNoviembre}"
+									style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+							<p:column style="text-align: right !important; padding:0;"
+								headerText="Diciembre" exportable="false" width="60">
+								<h:outputText value="#{detalle.autoDiciembre}"
+									style="aling:center">
+									<f:convertNumber pattern="###,###,##0.00" type="number" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+					<p:dataTable id="object" var="detalle"
+						value="#{egresoDetalladoConsultaMB.egresos}"
+						rowKey="#{detalle.id}" selectionMode="single" paginator="true"
+						lazy="true" rows="10" paginatorPosition="bottom"
+						styleClass="green col-centered row-centered shadow-panel"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						scrollable="true" scrollWidth="750" frozenColumns="5">
+						<f:facet name="header">
+				                Egresos Detallado
+				            </f:facet>
+						<p:column style="text-align: center !important; padding:0;"
+							headerText="Area" width="20">
+							<h:outputText value="#{detalle.area.clave}" />
+						</p:column>
+						<p:column style="text-align: center !important; padding:0;"
+							headerText="Dependencia" width="55">
+							<h:outputText value="#{detalle.dependencia.clvdep}" />
+						</p:column>
+						<p:column style="text-align: center !important; padding:0;"
+							headerText="Proyecto" width="55">
+							<h:outputText value="#{detalle.proyecto.campo7}" />
+						</p:column>
+						<p:column style="text-align: center !important; padding:0;"
+							headerText="Fuente de Financiamiento" width="55">
+							<h:outputText
+								value="#{detalle.fuente.cuenta}#{detalle.fuente.scta}#{detalle.fuente.sscta}#{detalle.fuente.ssscta}" />
+						</p:column>
+						<p:column style="text-align: center !important; padding:0;"
+							headerText="Partida" width="25">
+							<h:outputText value="#{detalle.partida.clvgas}" />
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Total" width="55">
+							<h:outputText value="#{detalle.total}">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Enero" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoEnero}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Febrero" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoFebrero}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Marzo" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoMarzo}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Abril" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoAbril}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Mayo" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoMayo}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Junio" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoJunio}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Julio" exportable="false" width="50">
+							<h:outputText value="#{detalle.autoJulio}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Agosto" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoAgosto}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Septiembre" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoSeptiembre}"
+								style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Octubre" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoOctubre}" style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Noviembre" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoNoviembre}"
+								style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+						<p:column style="text-align: right !important; padding:0;"
+							headerText="Diciembre" exportable="false" width="55">
+							<h:outputText value="#{detalle.autoDiciembre}"
+								style="aling:center">
+								<f:convertNumber pattern="###,###,##0.00" type="number" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable> -->
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

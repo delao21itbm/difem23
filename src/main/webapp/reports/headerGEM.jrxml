@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="headerGEM" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="722" leftMargin="20" rightMargin="100" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="0c4642d6-cb06-4bac-9842-73ebf12b49ca">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="987"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GEMUSER"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="style1" markup="styled"/>
+	<parameter name="pLogoName" class="java.lang.String"/>
+	<parameter name="pHeader1" class="java.lang.String"/>
+	<parameter name="pHeader2" class="java.lang.String"/>
+	<parameter name="pHeader3" class="java.lang.String"/>
+	<parameter name="pHeader4" class="java.lang.String"/>
+	<parameter name="idSector" class="java.lang.Integer"/>
+	<parameter name="pLogoName2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="80">
+			<image hAlign="Center" vAlign="Bottom" onErrorType="Blank">
+				<reportElement x="-19" y="-1" width="160" height="60" uuid="7b6af605-98d3-4636-9b4a-5bde0c0b434f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pLogoName}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="-19" y="60" width="809" height="20" uuid="01b1f523-01d8-4083-99f1-7f5331606fe1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pHeader1}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Left" vAlign="Bottom" onErrorType="Blank">
+				<reportElement x="630" y="-2" width="160" height="60" uuid="e133cfaf-afb7-4161-baee-dcea14f69747">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pLogoName2}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+</jasperReport>

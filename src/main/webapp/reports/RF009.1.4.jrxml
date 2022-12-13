@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Balanza de COmprobación" language="groovy" pageWidth="1008" pageHeight="612" orientation="Landscape" columnWidth="968" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="da956850-48ad-402b-be8c-63dd6562bc86">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="763"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="223"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="year" class="java.lang.Integer"/>
+	<parameter name="pImg1" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="entidadName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="mes" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="idSector" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="where" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="firmaP1" class="java.lang.String"/>
+	<parameter name="firmaP2" class="java.lang.String"/>
+	<parameter name="firmaP3" class="java.lang.String"/>
+	<parameter name="firmaP4" class="java.lang.String"/>
+	<parameter name="firmaN1" class="java.lang.String"/>
+	<parameter name="firmaN2" class="java.lang.String"/>
+	<parameter name="firmaN3" class="java.lang.String"/>
+	<parameter name="firmaN4" class="java.lang.String"/>
+	<parameter name="lastDay" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="mesName" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="pImg2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT CUENTA,
+ 		NOMCTA,
+		STACTA,
+		SALINI SALINI,
+		CARGOS_1 ,
+		CARGOS_2 ,
+		CARGOS_3 ,
+		CARGOS_4 ,
+		CARGOS_5 ,
+		CARGOS_6 ,
+		CARGOS_7 ,
+		CARGOS_8 ,
+		CARGOS_9 ,
+		CARGOS_10 ,
+		CARGOS_11 ,
+		CARGOS_12 ,
+		ABONOS_1 ,
+		ABONOS_2 ,
+		ABONOS_3 ,
+		ABONOS_4 ,
+		ABONOS_5 ,
+		ABONOS_6 ,
+		ABONOS_7 ,
+		ABONOS_8 ,
+		ABONOS_9 ,
+		ABONOS_10 ,
+		ABONOS_11 ,
+		ABONOS_12 
+	 FROM CUENTA
+ WHERE  SCTA='' AND 
+ 		SSCTA='' AND 
+ 		SSSCTA='' AND 
+ 		NOTCTA=0 AND 
+ 		(SUBSTR(CUENTA,4,1)<>'0' OR SUBSTR(CUENTA,1,1)='5' OR SUBSTR(CUENTA,1,2)='81'  OR CUENTA LIKE '7%0') AND 
+ 		$P!{where}
+ ORDER BY CUENTA]]>
+	</queryString>
+	<field name="CUENTA" class="java.lang.String"/>
+	<field name="NOMCTA" class="java.lang.String"/>
+	<field name="STACTA" class="java.lang.String"/>
+	<field name="SALINI" class="java.math.BigDecimal"/>
+	<field name="CARGOS_1" class="java.math.BigDecimal"/>
+	<field name="CARGOS_2" class="java.math.BigDecimal"/>
+	<field name="CARGOS_3" class="java.math.BigDecimal"/>
+	<field name="CARGOS_4" class="java.math.BigDecimal"/>
+	<field name="CARGOS_5" class="java.math.BigDecimal"/>
+	<field name="CARGOS_6" class="java.math.BigDecimal"/>
+	<field name="CARGOS_7" class="java.math.BigDecimal"/>
+	<field name="CARGOS_8" class="java.math.BigDecimal"/>
+	<field name="CARGOS_9" class="java.math.BigDecimal"/>
+	<field name="CARGOS_10" class="java.math.BigDecimal"/>
+	<field name="CARGOS_11" class="java.math.BigDecimal"/>
+	<field name="CARGOS_12" class="java.math.BigDecimal"/>
+	<field name="ABONOS_1" class="java.math.BigDecimal"/>
+	<field name="ABONOS_2" class="java.math.BigDecimal"/>
+	<field name="ABONOS_3" class="java.math.BigDecimal"/>
+	<field name="ABONOS_4" class="java.math.BigDecimal"/>
+	<field name="ABONOS_5" class="java.math.BigDecimal"/>
+	<field name="ABONOS_6" class="java.math.BigDecimal"/>
+	<field name="ABONOS_7" class="java.math.BigDecimal"/>
+	<field name="ABONOS_8" class="java.math.BigDecimal"/>
+	<field name="ABONOS_9" class="java.math.BigDecimal"/>
+	<field name="ABONOS_10" class="java.math.BigDecimal"/>
+	<field name="ABONOS_11" class="java.math.BigDecimal"/>
+	<field name="ABONOS_12" class="java.math.BigDecimal"/>
+	<variable name="V_mes" class="java.util.List" incrementType="Report">
+		<variableExpression><![CDATA[java.util.Arrays.asList("","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE")]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.util.ArrayList()]]></initialValueExpression>
+	</variable>
+	<variable name="V_dia" class="java.util.List" incrementType="Report">
+		<variableExpression><![CDATA[java.util.Arrays.asList(0,31,28,31,30,31,30,31,31,30,31,30,31)]]></variableExpression>
+	</variable>
+	<variable name="V_get_day" class="java.lang.Integer" incrementType="Report">
+		<variableExpression><![CDATA[($P{mes}==2)?(
+($P{year}%4==0)?
+(29)
+:($V{V_dia}.get($P{mes}))
+):($V{V_dia}.get($P{mes}))]]></variableExpression>
+	</variable>
+	<variable name="V_head_vacio" class="java.lang.String"/>
+	<variable name="V_edo" class="java.lang.String">
+		<variableExpression><![CDATA["ESTADO"]]></variableExpression>
+	</variable>
+	<variable name="V_S1_Debe" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($F{STACTA}.toUpperCase()=="D")? 
+	($P{mes}.intValue()==1)?
+		$F{SALINI}
+	:($P{mes}.intValue()==2)?
+		(($F{SALINI} + $F{CARGOS_1}) - $F{ABONOS_1})
+	:($P{mes}.intValue()==3)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2})) - ($F{ABONOS_1} + $F{ABONOS_2}))
+	:($P{mes}.intValue()==4)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3}))
+	:($P{mes}.intValue()==5)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4}))
+	:($P{mes}.intValue()==6)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5}))
+	:($P{mes}.intValue()==7)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6}))
+	:($P{mes}.intValue()==8)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7}))
+	:($P{mes}.intValue()==9)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8}))
+	:($P{mes}.intValue()==10)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9}))
+	:($P{mes}.intValue()==11)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10}))
+	:($P{mes}.intValue()==12)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10} + $F{CARGOS_11})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10} + $F{ABONOS_11}))
+	:0.00
+:0.00]]></variableExpression>
+	</variable>
+	<variable name="V_S1_Haber" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($F{STACTA}.toUpperCase()=="A")? 
+	($P{mes}.intValue()==1)?
+		$F{SALINI}
+	:($P{mes}.intValue()==2)?
+		(($F{SALINI} + $F{ABONOS_1}) - $F{CARGOS_1})
+	:($P{mes}.intValue()==3)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2})) - ($F{CARGOS_1} + $F{CARGOS_2}))
+	:($P{mes}.intValue()==4)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3}))
+	:($P{mes}.intValue()==5)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4}))
+	:($P{mes}.intValue()==6)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5}))
+	:($P{mes}.intValue()==7)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6}))
+	:($P{mes}.intValue()==8)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7}))
+	:($P{mes}.intValue()==9)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8}))
+	:($P{mes}.intValue()==10)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9}))
+	:($P{mes}.intValue()==11)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10}))
+	:($P{mes}.intValue()==12)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10} + $F{ABONOS_11})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10} + $F{CARGOS_11}))
+	:0.00
+:0.00]]></variableExpression>
+	</variable>
+	<variable name="V_S2_Debe" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($P{mes}==1)?($F{CARGOS_1}):(
+	($P{mes}==2)?($F{CARGOS_2}):(
+		($P{mes}==3)?($F{CARGOS_3}):(
+			($P{mes}==4)?($F{CARGOS_4}):(
+				($P{mes}==5)?($F{CARGOS_5}):(
+					($P{mes}==6)?($F{CARGOS_6}):(
+						($P{mes}==7)?($F{CARGOS_7}):(
+							($P{mes}==8)?($F{CARGOS_8}):(
+								($P{mes}==9)?($F{CARGOS_9}):(
+									($P{mes}==10)?($F{CARGOS_10}):(
+										($P{mes}==11)?($F{CARGOS_11}):(
+											($P{mes}==12)?($F{CARGOS_12}):(
+												0.00
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
+		)
+	)	
+)]]></variableExpression>
+	</variable>
+	<variable name="vNegativoS1Haber" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$P{idSector} == 1 ? 
+($F{CUENTA}.equals("1115") || $F{CUENTA}.equals("1161") || $F{CUENTA}.equals("3241")) ?
+$V{V_S1_Haber}.multiply(new BigDecimal(-1))
+:
+$V{V_S1_Haber}
+:
+$V{V_S1_Haber}]]></variableExpression>
+	</variable>
+	<variable name="V_S2_Haber" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($P{mes}==1)?($F{ABONOS_1}):(
+	($P{mes}==2)?($F{ABONOS_2}):(
+		($P{mes}==3)?($F{ABONOS_3}):(
+			($P{mes}==4)?($F{ABONOS_4}):(
+				($P{mes}==5)?($F{ABONOS_5}):(
+					($P{mes}==6)?($F{ABONOS_6}):(
+						($P{mes}==7)?($F{ABONOS_7}):(
+							($P{mes}==8)?($F{ABONOS_8}):(
+								($P{mes}==9)?($F{ABONOS_9}):(
+									($P{mes}==10)?($F{ABONOS_10}):(
+										($P{mes}==11)?($F{ABONOS_11}):(
+											($P{mes}==12)?($F{ABONOS_12}):(
+												0.00
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
+		)
+	)	
+)]]></variableExpression>
+	</variable>
+	<variable name="V_S3_Debe" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($F{STACTA}.toUpperCase()=="D")? 
+	($P{mes}.intValue()==1)?
+		(($F{SALINI} + $F{CARGOS_1}) - $F{ABONOS_1})
+	:($P{mes}.intValue()==2)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2})) - ($F{ABONOS_1} + $F{ABONOS_2}))
+	:($P{mes}.intValue()==3)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3}))
+	:($P{mes}.intValue()==4)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4}))
+	:($P{mes}.intValue()==5)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5}))
+	:($P{mes}.intValue()==6)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6}))
+	:($P{mes}.intValue()==7)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7}))
+	:($P{mes}.intValue()==8)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8}))
+	:($P{mes}.intValue()==9)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9}))
+	:($P{mes}.intValue()==10)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10}))
+	:($P{mes}.intValue()==11)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10} + $F{CARGOS_11})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10} + $F{ABONOS_11}))
+	:($P{mes}.intValue()==12)?
+		(($F{SALINI} + ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10} + $F{CARGOS_11} + $F{CARGOS_12})) - ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10} + $F{ABONOS_11} + $F{ABONOS_12}))
+	:0.00
+:0.00]]></variableExpression>
+	</variable>
+	<variable name="V_S3_Haber" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($F{STACTA}.toUpperCase()=="A")? 
+	($P{mes}.intValue()==1)?
+		(($F{SALINI} + $F{ABONOS_1}) - $F{CARGOS_1})
+	:($P{mes}.intValue()==2)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2})) - ($F{CARGOS_1} + $F{CARGOS_2}))
+	:($P{mes}.intValue()==3)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3}))
+	:($P{mes}.intValue()==4)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4}))
+	:($P{mes}.intValue()==5)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5}))
+	:($P{mes}.intValue()==6)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6}))
+	:($P{mes}.intValue()==7)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7}))
+	:($P{mes}.intValue()==8)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8}))
+	:($P{mes}.intValue()==9)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9}))
+	:($P{mes}.intValue()==10)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10}))
+	:($P{mes}.intValue()==11)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10} + $F{ABONOS_11})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10} + $F{CARGOS_11}))
+	:($P{mes}.intValue()==12)?
+		(($F{SALINI} + ($F{ABONOS_1} + $F{ABONOS_2} + $F{ABONOS_3} + $F{ABONOS_4} + $F{ABONOS_5} + $F{ABONOS_6} + $F{ABONOS_7} + $F{ABONOS_8} + $F{ABONOS_9} + $F{ABONOS_10} + $F{ABONOS_11} + $F{ABONOS_12})) - ($F{CARGOS_1} + $F{CARGOS_2} + $F{CARGOS_3} + $F{CARGOS_4} + $F{CARGOS_5} + $F{CARGOS_6} + $F{CARGOS_7} + $F{CARGOS_8} + $F{CARGOS_9} + $F{CARGOS_10} + $F{CARGOS_11} + $F{CARGOS_12}))
+	:0.00
+:0.00]]></variableExpression>
+	</variable>
+	<variable name="vNegativoS3Haber" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$P{idSector} == 1 ? 
+($F{CUENTA}.equals("1115") || $F{CUENTA}.equals("1161") || $F{CUENTA}.equals("3241")) ?
+$V{V_S3_Haber}.multiply(new BigDecimal(-1))
+:
+$V{V_S3_Haber}
+:
+$V{V_S3_Haber}]]></variableExpression>
+	</variable>
+	<variable name="V_Total_S1_Debe" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{V_S1_Debe}]]></variableExpression>
+	</variable>
+	<variable name="V_Total_S1_Haber" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{vNegativoS1Haber}]]></variableExpression>
+	</variable>
+	<variable name="V_Total_S2_Debe" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{V_S2_Debe}]]></variableExpression>
+	</variable>
+	<variable name="V_Total_S2_Haber" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{V_S2_Haber}]]></variableExpression>
+	</variable>
+	<variable name="V_Total_S3_Debe" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{V_S3_Debe}]]></variableExpression>
+	</variable>
+	<variable name="V_Total_S3_Haber" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$V{vNegativoS3Haber}]]></variableExpression>
+	</variable>
+	<group name="Group1">
+		<groupFooter>
+			<band height="12">
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="308" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="e7289076-97c8-44a2-962d-9aa86ae681a4">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{V_Total_S1_Debe}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="418" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="48d32a93-4274-4b40-bbad-6339214a6287">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{V_Total_S1_Haber}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="528" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="54b1ff2e-cf16-46da-9b9a-14d9aa96fd7f">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{V_Total_S2_Debe}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="638" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="2d01b874-fcfe-401c-8d01-27d8a9fcb63e">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{V_Total_S2_Haber}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="748" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="dcff630b-6cc0-4c8d-b55f-b50c4cc1d489">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{V_Total_S3_Debe}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="858" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="c980c27b-818b-401e-81bc-b2d8733f0b7b">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{V_Total_S3_Haber}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="60" y="0" width="248" height="12" backcolor="#FFFFFF" uuid="7a576af8-6469-4e01-af07-46745e3c2cc2">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<text><![CDATA[TOTALES:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="105" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="160" height="60" isRemoveLineWhenBlank="true" uuid="c2039021-52c2-4b2b-b7c0-1dacb8b3eb68">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pImg1}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="808" y="0" width="160" height="60" isRemoveLineWhenBlank="true" uuid="e1da38a4-a836-44ea-ae2f-330ada72805d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{pImg2}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="60" width="968" height="15" uuid="6a34dec4-3195-4c93-b432-2fa35f655662">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{entidadName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="75" width="968" height="15" uuid="a06e185e-d222-41a5-8140-2caf2f8f95fe">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.25"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[BALANZA DE COMPROBACIÓN]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="0" y="90" width="968" height="15" uuid="e9634b48-d148-4b35-b06f-52b76c39aa9e">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.25"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" AL " +  $P{lastDay} + " DE "+$P{mesName}.toUpperCase()+ " DE " + $P{year}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="60" height="30" backcolor="#DBDBDB" uuid="39081453-5910-49ba-9bd5-d87e6180e1b0"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[CUENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="60" y="0" width="248" height="30" backcolor="#DBDBDB" uuid="c44ad617-a1a4-4590-9bb6-c10f0349dc82"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="308" y="0" width="220" height="15" backcolor="#DBDBDB" uuid="412c19e1-d76c-4522-82f8-765430969410"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[SALDO INICIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="308" y="15" width="110" height="15" backcolor="#DBDBDB" uuid="d2600826-0cd4-4a1d-9abc-73aa864534f3">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[DEBE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="418" y="15" width="110" height="15" backcolor="#DBDBDB" uuid="8d9fe4f1-bccd-430f-87eb-70c0a6dab194"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[HABER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="528" y="15" width="110" height="15" backcolor="#DBDBDB" uuid="e8b58ffb-45d9-4313-86fc-54116b77084c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[DEBE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="528" y="0" width="220" height="15" backcolor="#DBDBDB" uuid="cdc3e5a5-592d-47d5-9d0e-6236b50e5357"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[MOVIMIENTOS DEL MES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="638" y="15" width="110" height="15" backcolor="#DBDBDB" uuid="b2090869-aa5e-40a9-ac12-feb2e9e63eae"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[HABER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="748" y="15" width="110" height="15" backcolor="#DBDBDB" uuid="cbb6f924-3a90-4bef-99b0-9badaeff158e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[DEBE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="748" y="0" width="220" height="15" backcolor="#DBDBDB" uuid="6ec41bc2-6608-4649-8823-6d475f41ffbe"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[SALDO FINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="858" y="15" width="110" height="15" backcolor="#DBDBDB" uuid="05a0ba9d-10c7-4535-a473-a48be35f788c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[HABER]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="60" height="12" backcolor="#FFFFFF" uuid="71c76f64-c0e2-466b-a778-2bea04bd40c3">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUENTA}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="0" width="248" height="12" backcolor="#FFFFFF" uuid="4ec2e60b-d449-4d26-921a-e07cded96242">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMCTA}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="308" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="e426896b-f587-4c20-9554-793ff750ec12">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{V_S1_Debe}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement stretchType="ContainerBottom" x="418" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="56a86258-eef6-48a0-9ce7-4dcc31dd3d71">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+					<paragraph lineSpacing="AtLeast"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{vNegativoS1Haber}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="528" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="e2993d4c-e851-46c5-acef-0088f129774f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{V_S2_Debe}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="638" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="93cd55a6-3813-4473-8fdf-d2edef0a43d5">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{V_S2_Haber}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="748" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="07264acd-fffd-491d-9dc3-93ec24e7636f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{V_S3_Debe}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="858" y="0" width="110" height="12" backcolor="#FFFFFF" uuid="08960ccc-ba03-420e-8295-ae9fff137580">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{vNegativoS3Haber}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15">
+			<textField>
+				<reportElement x="858" y="0" width="42" height="15" uuid="d075bfd2-daf9-439f-8bbe-5eb0172ab293">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="590" y="0" width="100" height="15" uuid="e5bf390d-28e3-404d-b7c4-0d47ffa309e1"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión: ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="690" y="0" width="110" height="15" uuid="8861e469-734a-495f-b55e-2b4ff46642d7"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="800" y="0" width="58" height="15" uuid="7e465dbd-0edb-4b85-979b-c8ab1d1bcd6d"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Hoja No: ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="100">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="45" width="180" height="40" uuid="fe9d8f98-9780-417c-b4f6-a9c7d5dafd1b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{firmaP1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="240" y="45" width="180" height="40" uuid="1de14648-53a5-4e62-b05a-20801f43d4ee">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{firmaP2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="510" y="45" width="180" height="40" uuid="bb040fdf-e008-407d-83cc-342a5b24edd6">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{firmaP3}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="0" y="5" width="180" height="40" uuid="75feca64-3851-472c-a197-ce1dc9e37b2f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{firmaN1}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="240" y="5" width="180" height="40" uuid="ab4f87f3-d36a-40c4-a0b2-a45585915a09">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{firmaN2}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="510" y="5" width="180" height="40" uuid="0d20e147-f4a1-4f46-a4a2-103fb2a91c26">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{firmaN3}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="778" y="5" width="180" height="40" uuid="6748c4ee-471e-4b69-8aec-c6df754167c5">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{firmaN4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="778" y="45" width="180" height="40" uuid="b083db77-e8ec-41cb-b5c3-0d2470b15022">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{firmaP4}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="643" y="85" width="97" height="15" uuid="b1322718-38e7-4104-997c-c516cc3c6c54">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión: ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="740" y="85" width="90" height="15" uuid="b472c387-57cf-4111-b1d5-b014d6b5d2fb">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="835" y="85" width="50" height="15" uuid="7a221af8-3cd3-441e-b54b-62b3f74a8ff7">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Hoja No: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="885" y="85" width="45" height="15" uuid="5b13d977-723e-4f49-9530-1c84f2f2938d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

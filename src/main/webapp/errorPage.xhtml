@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html" transient="true">
+	<h:head>
+		<ui:param name="root" value="#{request.contextPath}/" />
+		<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+		<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+		<!-- Latest compiled and minified CSS -->
+		<link rel="shortcut icon" type="image/png"
+			href="#{resource['images/GRANDEIcono.png']}"></link>
+		<!-- Latest compiled and minified CSS -->
+		<h:outputStylesheet library="css" name="cssLayout.css" />
+		<h:outputStylesheet library="css" name="bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="bootstrap-theme.min.css" />
+		<h:outputScript library="js" name="bootstrap.min.js" />
+
+		<!-- Overriding default CSS of primefaces -->
+		<style>
+.ui-widget {
+	font-size: 12px;
+}
+
+.ui-growl {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 9999;
+}
+
+li.alert.alert-danger {
+	list-style-type: none !important;
+}
+</style>
+		<title>Contadur&iacute;a General Gubernamental</title>
+	</h:head>
+	<div class="container-fluid">
+		<div id="headGem" style="position: relative;">
+			<h:link outcome="home.xhtml">
+				<div class="row colorwhite">
+					<div class="col-md-3 col-centeredLogos">
+						<div id="edomexlogo"></div>
+					</div>
+					<div class="col-md-6 col-centeredLogos vcenter">
+						<p class="titleapp">GOBIERNO DEL ESTADO DE M&Eacute;XICO</p>
+						<p class="titleapp">SECRETAR&Iacute;A DE FINANZAS</p>
+						<p class="titleapp">SUBSECRETARIA DE PLANEACI&Oacute;N Y
+							PRESUPUESTO</p>
+						<p class="titleapp">CONTADURIA GENERAL GUBERNAMENTAL</p>
+					</div>
+					<div class="col-md-3 col-centeredLogos">
+						<div id="piensagrande"></div>
+					</div>
+				</div>
+				<div id="greenwaves" class="row colorwhite"></div>
+			</h:link>
+		</div>
+		<div id="navv" data-spy="affix" data-offset-top="154">
+			<nav class="navbar navbar-default navbar-static">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="ui-grid ui-grid-responsive">
+						<div class="ui-grid-row">
+							<div class="ui-grid-col-12">
+								<ul class="nav navbar-nav">
+
+									<li class="active" id="idHome"><a
+										href="#{request.contextPath}/home.xhtml">Home</a></li>
+									
+								</ul>
+							</div>
+							<div class="ui-grid-col-2">
+								<ul class="nav navbar-nav">
+
+									<li class="btn-danger"><a
+										href="#{request.contextPath}/logout" style="color: white"><span
+											class="glyphicon glyphicon-share" aria-hidden="true"></span>
+											Salir</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</nav>
+		</div>
+	</div>
+
+
+	<div class="container-fluid col-centered">
+		<div class="row col-centered">
+			<div class="well col-centered" style="margin-top: 25px; width: 35%;">
+				<br /> <br />
+				<table>
+					<tr>
+						<td><img src=".\resources\images\iconWarningLarge.gif"
+							style="width: 48px; height: 48px;" /></td>
+						<td>
+							<h5>
+								<span class="glyphicon glyphicon-use"></span>Ocurri&oacute; un
+								error en el sistema, favor de reportar
+							</h5>
+						</td>
+					</tr>
+				</table>
+				<br /> <br />
+			</div>
+		</div>
+	</div>
+</f:view>
+</html>

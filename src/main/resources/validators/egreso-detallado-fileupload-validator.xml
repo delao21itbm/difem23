@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+				  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<description>
+		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		Validaciones al archivo de egresos detallados
+		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	</description>
+
+
+	<bean id="egresoDetalladoValidador"
+		class="com.gem.sistema.load.fileupload.validators.impl.CsvFileValidatorImpl">
+		<property name="noTokensByLine" value="19"></property>
+		<property name="lineToStart" value="0"></property>
+		<property name="skipFail" value="true"></property>
+		<property name="separator" value=","></property>
+		<property name="errorSeparator" value=","></property>
+		<property name="validators">
+			<util:list
+				value-type="com.gem.sistema.load.fileupload.validators.FieldValidator">
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: La clave de area solo debe de contener de 1 a 3 numeros" />
+					<property name="index" value="0" />
+					<property name="fieldName" value="Area" />
+					<property name="pattern" value="^[0-9]{1,3}$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: El conepto solo debe de contener letras numero y espacios " />
+					<property name="index" value="1" />
+					<property name="fieldName" value="Concepto" />
+					<property name="pattern"
+						value="^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ0-9();._ \s]+$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: La dependencia solo debe de contener 10 caracteres conformada por letras y numero" />
+					<property name="index" value="2" />
+					<property name="fieldName" value="Dependencia" />
+					<property name="pattern" value="^[0-9A-Z]{10}$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: El proyecto solo debe de contener 11 o 12 digitos " />
+					<property name="index" value="3" />
+					<property name="fieldName" value="Proyecto" />
+					<property name="pattern" value="^[0-9]{11,12}$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: La fuente de financiamiento solo debe de contener 8 números" />
+					<property name="index" value="4" />
+					<property name="fieldName" value="Fuente Financiamiento" />
+					<property name="pattern" value="^[0-9]{8}$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: La partida solo debe de contener 4 numeros" />
+					<property name="index" value="5" />
+					<property name="fieldName" value="Partida" />
+					<property name="pattern" value="^[0-9]{4}$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto enero no debe de contener mas de 2 decimales" />
+					<property name="index" value="6" />
+					<property name="fieldName" value="Enero" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto febrero no debe de contener mas de 2 decimales" />
+					<property name="index" value="7" />
+					<property name="fieldName" value="Febrero" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto marzo no debe de contener mas de 2 decimales" />
+					<property name="index" value="8" />
+					<property name="fieldName" value="Marzo" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto abril no debe de contener mas de 2 decimales" />
+					<property name="index" value="9" />
+					<property name="fieldName" value="Abril" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto mayo no debe de contener mas de 2 decimales" />
+					<property name="index" value="10" />
+					<property name="fieldName" value="Mayo" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto junio no debe de contener mas de 2 decimales" />
+					<property name="index" value="11" />
+					<property name="fieldName" value="Junio" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto julio no debe de contener mas de 2 decimales" />
+					<property name="index" value="12" />
+					<property name="fieldName" value="Julio" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto agosto no debe de contener mas de 2 decimales" />
+					<property name="index" value="13" />
+					<property name="fieldName" value="Agosto" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto septiembre no debe de contener mas de 2 decimales" />
+					<property name="index" value="14" />
+					<property name="fieldName" value="Septiembre" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto octubre no debe de contener mas de 2 decimales" />
+					<property name="index" value="15" />
+					<property name="fieldName" value="Octubre" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto noviembre no debe de contener mas de 2 decimales" />
+					<property name="index" value="16" />
+					<property name="fieldName" value="Noviembre" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto diciembre no debe de contener mas de 2 decimales" />
+					<property name="index" value="17" />
+					<property name="fieldName" value="Diciembre" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+				<bean
+					class="com.gem.sistema.load.fileupload.validators.field.PatternFieldValidator">
+					<property name="messageError"
+						value="%1$s :: Monto de total no debe de contener mas de 2 decimales" />
+					<property name="index" value="18" />
+					<property name="fieldName" value="Total" />
+					<property name="pattern" value="^[0-9]+(\.[0-9]{1,2})?$" />
+				</bean>
+
+			</util:list>
+
+		</property>
+	</bean>
+
+
+
+</beans>

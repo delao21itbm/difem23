@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/WEB-INF/layout/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="form1">
+				<p:panel id="panel" header="Carga de Presupuesto de Egresos"
+					styleClass="green col-md-9 col-centered row-centered shadow-panel">
+					<p:messages id="messages" showDetail="true" closable="true" />
+					<pe:blockUI widgetVar="blockUIWidget" centerX="false">
+						<h:panelGrid columns="2">
+							<h:graphicImage value="../catalogs/indice.png"
+								style="margin-right: 12px; vertical-align: middle;" />
+							<h:outputText value="Por favor espere..."
+								style="white-space: nowrap;" />
+						</h:panelGrid>
+					</pe:blockUI>
+					<p:panelGrid columns="2"
+						styleClass="col-centered row-centered ui-noborder">
+						<p:fileUpload
+							fileUploadListener="#{egresoDetalladoCargMB.handleFileUpload}"
+							mode="advanced" dragDropSupport="false"
+							update=":form1:messages,  errorsFile object"
+							sizeLimit="1000000000000" accept=".csv"
+							allowTypes="/(\.|\/)(csv)$/"
+							invalidSizeMessage="Tamaño invalido de archivo."
+							invalidFileMessage="Tipo invalido de archivo."
+							cancelLabel="Cancelar" label="Elegir" uploadLabel="Cargar"
+							onstart="PF('blockUIWidget').block();"
+							oncomplete="PF('blockUIWidget').unblock(); ">
+
+						</p:fileUpload>
+					</p:panelGrid>
+					<p:panelGrid columns="4" id="errorsFile"
+						styleClass="col-centered row-centered ui-noborder">
+						<p:commandButton value="Descargar archivo de Errores" ajax="false"
+							rendered="#{not empty egresoDetalladoCargMB.fileError}">
+							<p:fileDownload value="#{egresoDetalladoCargMB.file}"></p:fileDownload>
+						</p:commandButton>
+					</p:panelGrid>
+
+					<p:panel style="width:100%"
+						styleClass="green col-md-9 col-centered row-centered shadow-panel">
+
+						<p:dataTable id="object" var="detalle"
+							value="#{egresoDetalladoCargMB.cargados}" rowKey="#{detalle.id}"
+							selectionMode="single" paginator="true" lazy="true" rows="10"
+							paginatorPosition="bottom" scrollable="true"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+							<f:facet name="header">
+				                Datos Cargados
+				            </f:facet>
+							<p:column headerText="No.Area" width="10%">
+								<h:outputText value="#{detalle.area.clave}" />
+							</p:column>
+							<p:column headerText="Dependencia" width="20%">
+								<h:outputText value="#{detalle.dependencia.clvdep}" />
+							</p:column>
+							<p:column headerText="Proyecto" width="20%">
+								<h:outputText value="#{detalle.proyecto.campo7}" />
+							</p:column>
+							<p:column headerText="Fuente de Financiamiento" width="20%">
+								<h:outputText
+									value="#{detalle.fuente.cuenta}#{detalle.fuente.scta}#{detalle.fuente.sscta}#{detalle.fuente.ssscta}" />
+							</p:column>
+							<p:column headerText="Partida" width="10%">
+								<h:outputText value="#{detalle.partida.clvgas}" />
+							</p:column>
+							<p:column headerText="Total" width="20%"
+								style="text-align: right;">
+								<h:outputText value="#{detalle.total}">
+									<f:convertNumber pattern="###,##0.00" locale="es_Mx" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</p:panel>
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

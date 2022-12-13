@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:body>
+	<ui:composition template="/WEB-INF/layout/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="form1">
+				<p:remoteCommand name="txt2" oncomplete="text3();"
+					actionListener="#{expInformationMB.downloadTxt2}" />
+				<p:remoteCommand name="text3" 
+					actionListener="#{expInformationMB.downloadTxt3}" />
+				<p:commandButton style="display: none" id="downTxt" ajax="false"
+					
+					onclick="PrimeFaces.monitorDownload(start, stop);txt2();">
+					<p:fileDownload value="#{expInformationMB.file1}" />
+
+
+				</p:commandButton>
+				<p:commandButton style="display: none" id="downTxt2" name="downTxt2"
+					ajax="false" oncomplete="text3()"
+					onclick="PrimeFaces.monitorDownload(start, stop);">
+					<p:fileDownload value="#{expInformationMB.file2}" />
+				</p:commandButton>
+
+				<p:commandButton style="display: none" id="downTxt3" name="downTxt3"
+					ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+					<p:fileDownload value="#{expInformationMB.file3}" />
+				</p:commandButton>
+				<p:growl id="growlReportador" showDetail="true" sticky="true"></p:growl>
+				<p:panel id="panelReporte" header="Exporta información"
+					styleClass="green col-md-5 col-centered row-centered shadow-panel">
+
+					<p:panelGrid columns="5" styleClass="col-centered ui-noborder">
+
+						<h:outputText value="Mes: " for="mesInputOri" id="lblMesInputOri" />
+						<p:selectOneMenu id="trimestre" value="#{expInformationMB.mes}">
+							<f:selectItems value="#{expInformationMB.listPeriodo}" var="trim"
+								itemLabel="#{trim.periodo}" itemValue="0#{trim.periodo}" />
+						</p:selectOneMenu>
+						<p:commandButton id="correcto" value="Correcto"
+							actionListener="#{expInformationMB.downloadCuentaTxt}"
+							update=":form1:growlReportador, :form1:downTxt">
+						</p:commandButton>
+
+					</p:panelGrid>
+
+
+
+				</p:panel>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

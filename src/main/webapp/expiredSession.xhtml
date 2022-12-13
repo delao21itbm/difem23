@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+                
+ <h:head>
+	<ui:param name="root" value="#{request.contextPath}/" />
+	<meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+	<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="shortcut icon" type="image/png"
+		href="#{resource['images/GRANDEIcono.png']}"></link>
+	<!-- Latest compiled and minified CSS -->
+	<h:outputStylesheet library="css" name="cssLayout.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+	<!-- Optional theme -->
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"></link>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<!-- Overriding default CSS of primefaces -->
+	<style>
+.ui-widget {
+	font-size: 12px;
+}
+
+.ui-growl {
+    position:absolute;
+    top:50%;
+    left:50%;
+    z-index:9999;
+}
+
+
+li.alert.alert-danger{list-style-type: none!important;}
+
+</style>
+	<title>Tesorer&iacute;a del Estado de M&eacute;xico</title>
+</h:head>	
+	<div class="container-fluid">
+		<div id="headGem" style="position:relative;">
+			
+				<div class="row colorwhite">	
+						<div class="col-md-3 col-centered"> <div id="edomexlogo"></div></div>
+						<div class="col-md-6 col-centered vcenter">			
+							<p class="titleapp">GOBIERNO DEL ESTADO DE MEXICO </p>	
+							<p class="titleapp">SECRETAR&Iacute;A DE FINANZAS </p>	
+							<p class="titleapp">SUBSECRETARIA DE PLANEACI&Oacute;N Y PRESUPUESTO </p>	
+							<p class="titleapp">CONTADURIA GENERAL GUBERNAMENTAL </p>		
+						</div>
+						<div class="col-md-3 col-centered"><div id="piensagrande"></div></div>
+				</div>		
+				<div id="greenwaves" class="row colorwhite"></div>				
+			
+		</div >	 
+	</div>	
+               
+        
+     	<div class="container-fluid col-centered">
+     		Su Session Ha expirado!!
+		</div>
+		
+		<!-- Footer Facelets -->
+		<ui:insert name="footer">
+			<ui:include src="/WEB-INF/layout/footer.xhtml" />
+		</ui:insert>
+</ui:composition>
