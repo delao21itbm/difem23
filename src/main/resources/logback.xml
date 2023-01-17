@@ -8,9 +8,9 @@
 	</appender>
 		
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>${jboss.server.log.dir}/dif22.log</file>
+    <file>${jboss.server.log.dir}/dif223.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-      <fileNamePattern>${jboss.server.log.dir}/dif22.%i.log.zip</fileNamePattern>
+      <fileNamePattern>${jboss.server.log.dir}/dif23.%i.log.zip</fileNamePattern>
       <minIndex>1</minIndex>
       <maxIndex>5</maxIndex>
     </rollingPolicy>
