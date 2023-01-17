@@ -16,7 +16,7 @@
 	<!-- <property name="jndiName" value="java:/DB2DS" /> -->
 	<!-- </bean> -->
 
-	<jee:jndi-lookup jndi-name="jdbc/DB2DS_22" id="dataSource"
+	<jee:jndi-lookup jndi-name="jdbc/DB2DS_23" id="dataSource"
 		resource-ref="false" ></jee:jndi-lookup>
 
 
