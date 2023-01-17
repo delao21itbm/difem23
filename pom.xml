@@ -6,11 +6,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.gem.sistema</groupId>
-	<artifactId>dif-web22</artifactId>
+	<artifactId>dif-web23</artifactId>
 	<version>1.0.14</version>
 	<packaging>war</packaging>
 
-	<name>dif-web22</name>
+	<name>dif-web23</name>
 
 	<properties>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -35,7 +35,7 @@
 		<spring-boot.version>1.3.3.RELEASE</spring-boot.version>
 		<spring.security.version>4.1.0.RELEASE</spring.security.version>
 		<version.deltaspike>1.6.1</version.deltaspike>
-		<warName>dif22</warName>
+		<warName>dif23</warName>
 	</properties>
 
 	<repositories>
