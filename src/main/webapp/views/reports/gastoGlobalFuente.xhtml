@@ -23,10 +23,16 @@
 					<p:fileDownload value="#{gastoGlobalFuenteMB.fileTxt}" />
 				</p:commandButton>
 				<p:panel id="panelReporte" header="Gasto global por fuente del mes "
-					styleClass="green col-md-9 col-centered row-centered shadow-panel">
+					styleClass="green col-md-10 col-centered row-centered shadow-panel">
 					<p:messages id="growlReportador" showDetail="true" closable="true" />
-					<p:panelGrid columns="11" id="mesPanel"
+					<p:panelGrid columns="13" id="mesPanel"
 						styleClass="green col-centered row-centered  ui-noborder">
+						<h:outputText value="Reporte: " for="reporte" />
+						<p:selectOneMenu id="reporte"
+							value="#{gastoGlobalFuenteMB.reporte}">
+							<f:selectItem itemValue="0" itemLabel="Mensual" />
+							<f:selectItem itemValue="1" itemLabel="Acumulado" />
+						</p:selectOneMenu>
 						<h:outputText value="Mes: " for="mes" />
 						<p:selectOneMenu id="mes" value="#{gastoGlobalFuenteMB.mes}">
 							<f:selectItems value="#{gastoGlobalFuenteMB.listMes}" var="item"
