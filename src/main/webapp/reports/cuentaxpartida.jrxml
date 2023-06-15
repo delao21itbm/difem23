@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<!-- Created with Jaspersoft Studio version 6.20.3.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter_Landscape" pageWidth="1008" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="968" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="377d64c3-c52b-494a-9aab-1d49edc2ad2d">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dif21"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -303,9 +303,9 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="10" splitType="Stretch">
+		<band height="10" splitType="Prevent">
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="40" height="10" uuid="a5bbe463-02fe-4e51-bf40-c6a06b7a9ae0">
+				<reportElement stretchType="ElementGroupHeight" x="0" y="0" width="40" height="10" uuid="a5bbe463-02fe-4e51-bf40-c6a06b7a9ae0">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -319,7 +319,7 @@
 				<textFieldExpression><![CDATA[$F{CUENTA}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="40" y="0" width="60" height="10" uuid="4b056241-9cd0-4c65-9896-f77d9cb0f396">
+				<reportElement stretchType="ElementGroupHeight" x="40" y="0" width="60" height="10" uuid="4b056241-9cd0-4c65-9896-f77d9cb0f396">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -331,7 +331,7 @@
 				<textFieldExpression><![CDATA[$F{SCTA}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="100" y="0" width="75" height="10" uuid="04acbb0a-dff4-4fbd-8174-4c971e769c32">
+				<reportElement stretchType="ElementGroupHeight" x="100" y="0" width="75" height="10" uuid="04acbb0a-dff4-4fbd-8174-4c971e769c32">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<box>
@@ -343,7 +343,7 @@
 				<textFieldExpression><![CDATA[$F{SSCTA}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="175" y="0" width="25" height="10" uuid="f969349a-fb86-4669-9130-e89403a13f33"/>
+				<reportElement stretchType="ElementGroupHeight" x="175" y="0" width="25" height="10" uuid="f969349a-fb86-4669-9130-e89403a13f33"/>
 				<box>
 					<pen lineWidth="0.5"/>
 				</box>
@@ -353,7 +353,7 @@
 				<textFieldExpression><![CDATA[$F{SSSCTA}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="200" y="0" width="25" height="10" uuid="b0cf2718-56d1-4844-a440-1ba652f53c15">
+				<reportElement stretchType="ElementGroupHeight" x="200" y="0" width="25" height="10" uuid="b0cf2718-56d1-4844-a440-1ba652f53c15">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -366,7 +366,7 @@
 				<textFieldExpression><![CDATA[$F{SSSSCTA}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="225" y="0" width="20" height="10" uuid="b6042448-464e-4f63-bdc7-528e0da89ea0"/>
+				<reportElement stretchType="ElementGroupHeight" x="225" y="0" width="20" height="10" uuid="b6042448-464e-4f63-bdc7-528e0da89ea0"/>
 				<box>
 					<pen lineWidth="0.5"/>
 				</box>
@@ -376,7 +376,7 @@
 				<textFieldExpression><![CDATA[$F{TIPPOL}]]></textFieldExpression>
 			</textField>
 			<textField pattern="00" isBlankWhenNull="true">
-				<reportElement x="295" y="0" width="20" height="10" uuid="64706fc7-8b7e-4b11-b4da-e80238023bae"/>
+				<reportElement stretchType="ElementGroupHeight" x="295" y="0" width="20" height="10" uuid="64706fc7-8b7e-4b11-b4da-e80238023bae"/>
 				<box>
 					<pen lineWidth="0.5"/>
 				</box>
@@ -386,7 +386,7 @@
 				<textFieldExpression><![CDATA[$F{MESPOL}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="315" y="0" width="20" height="10" uuid="21587058-fe57-4cfe-ad7c-d65814a96e05"/>
+				<reportElement stretchType="ElementGroupHeight" x="315" y="0" width="20" height="10" uuid="21587058-fe57-4cfe-ad7c-d65814a96e05"/>
 				<box>
 					<pen lineWidth="0.5"/>
 				</box>
@@ -396,7 +396,7 @@
 				<textFieldExpression><![CDATA[$F{CONPOL}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="335" y="0" width="40" height="10" uuid="1a57c8c2-1ace-46aa-af7c-c908739b6aed"/>
+				<reportElement stretchType="ElementGroupHeight" x="335" y="0" width="40" height="10" uuid="1a57c8c2-1ace-46aa-af7c-c908739b6aed"/>
 				<box>
 					<pen lineWidth="0.5"/>
 				</box>
@@ -405,8 +405,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{RENPOL}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="423" y="0" width="205" height="10" uuid="6f72096f-8c1a-4c47-b9ea-145412c0f436"/>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement stretchType="ElementGroupHeight" x="423" y="0" width="205" height="10" uuid="6f72096f-8c1a-4c47-b9ea-145412c0f436"/>
 				<box>
 					<pen lineWidth="0.5"/>
 				</box>
@@ -417,7 +417,7 @@
 				<textFieldExpression><![CDATA[$F{CONCEP}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="628" y="0" width="85" height="10" uuid="b6e89288-1745-4326-be5c-8627e0cd1503">
+				<reportElement stretchType="ElementGroupHeight" x="628" y="0" width="85" height="10" uuid="b6e89288-1745-4326-be5c-8627e0cd1503">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -431,7 +431,7 @@
 				<textFieldExpression><![CDATA[$F{CANPOL}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="713" y="0" width="85" height="10" uuid="c40090e2-0783-4d0c-844f-2d0036732e94">
+				<reportElement stretchType="ElementGroupHeight" x="713" y="0" width="85" height="10" uuid="c40090e2-0783-4d0c-844f-2d0036732e94">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
@@ -444,7 +444,7 @@
 				<textFieldExpression><![CDATA[$F{CANPOLH}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0" isBlankWhenNull="true">
-				<reportElement x="375" y="0" width="48" height="10" uuid="0acc31a4-d226-4f15-864d-0fd2e3750cb7"/>
+				<reportElement stretchType="ElementGroupHeight" x="375" y="0" width="48" height="10" uuid="0acc31a4-d226-4f15-864d-0fd2e3750cb7"/>
 				<box>
 					<pen lineWidth="0.5"/>
 				</box>
@@ -454,7 +454,7 @@
 				<textFieldExpression><![CDATA[$F{REFPOL}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="798" y="0" width="85" height="10" uuid="450fcc79-3033-4e2a-8250-2d740e5af0e0">
+				<reportElement stretchType="ElementGroupHeight" x="798" y="0" width="85" height="10" uuid="450fcc79-3033-4e2a-8250-2d740e5af0e0">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
@@ -471,7 +471,7 @@
 				<textFieldExpression><![CDATA[$F{ROWPARTIDA}.equals($F{ROWSPARTIDA}) ? $V{sumaPartida} : ""]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
-				<reportElement x="883" y="0" width="85" height="10" uuid="4e1d986a-78c3-41d3-b8aa-b68c9281d419">
+				<reportElement stretchType="ElementGroupHeight" x="883" y="0" width="85" height="10" uuid="4e1d986a-78c3-41d3-b8aa-b68c9281d419">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
@@ -488,7 +488,7 @@
 				<textFieldExpression><![CDATA[$F{ROWDIRECCION}.equals($F{ROWSDIRECCION}) ? $V{sumaDireccion} : ""]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="245" y="0" width="50" height="10" uuid="6b3d5e0f-c3b2-45df-9057-e231d024c9db"/>
+				<reportElement stretchType="ElementGroupHeight" x="245" y="0" width="50" height="10" uuid="6b3d5e0f-c3b2-45df-9057-e231d024c9db"/>
 				<box>
 					<pen lineWidth="0.5"/>
 				</box>

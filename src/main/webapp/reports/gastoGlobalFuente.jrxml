@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<!-- Created with Jaspersoft Studio version 6.20.3.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="edoactividades" pageWidth="720" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="680" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8935b601-f1a3-4905-8fc8-ad12ca413c77">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dif"/>
@@ -60,21 +60,11 @@
 	<parameter name="sscta" class="java.lang.String">
 		<parameterDescription><![CDATA[]]></parameterDescription>
 	</parameter>
+	<parameter name="sql" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT D.SSSCTA,
-	SUM(D.CANPOL) CARGO,
-	SUM(D.CANPOLH) ABONO ,
-	SUM(D.CANPOL)-SUM(D.CANPOLH) DIF
-FROM POLIDE D
-WHERE D.MESPOL = $P{mes} AND
-	D.IDSECTOR = $P{sector} AND 
-	D.CUENTA = $P{cuenta} AND 
-	D.SSSCTA LIKE  $P{ssscta} ||  '%' AND
-	D.SSCTA <>'' AND 
-	SUBSTR(D.SSCTA ,13,3) LIKE $P{sscta}||'%'
-GROUP BY
-	D.SSSCTA
-]]>
+		<![CDATA[$P!{sql}]]>
 	</queryString>
 	<field name="SSSCTA" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="SSSCTA"/>
@@ -281,7 +271,7 @@ GROUP BY
 				</textElement>
 				<textFieldExpression><![CDATA[$F{SSSCTA}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="ScaleFont">
+			<textField textAdjust="ScaleFont" pattern="#,##0.00">
 				<reportElement stretchType="ContainerHeight" x="90" y="0" width="190" height="12" uuid="00564d71-8c2e-4126-b3cf-7930223cc9a4">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="aa2b9594-7674-4f4c-9510-7733911a8b6c"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -291,7 +281,7 @@ GROUP BY
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CARGO}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="ScaleFont">
+			<textField textAdjust="ScaleFont" pattern="#,##0.00">
 				<reportElement stretchType="ContainerHeight" x="310" y="0" width="170" height="12" uuid="9dc9d3d0-fa17-4845-8281-119cd94a0b53">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6ee50bd3-6e9a-4575-a062-3273996160a1"/>
 				</reportElement>
@@ -300,7 +290,7 @@ GROUP BY
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ABONO}]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="ScaleFont">
+			<textField textAdjust="ScaleFont" pattern="#,##0.00">
 				<reportElement stretchType="ContainerHeight" x="510" y="0" width="160" height="12" uuid="cbe0c514-bace-4e7b-a2b6-79e5ea242432">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89676f5a-3f1f-44c7-bba0-6f2cb350b9d8"/>
 				</reportElement>
@@ -358,7 +348,7 @@ GROUP BY
 				</textElement>
 				<textFieldExpression><![CDATA["SUMA GENERAL"]]></textFieldExpression>
 			</textField>
-			<textField textAdjust="ScaleFont">
+			<textField textAdjust="ScaleFont" pattern="#,##0.00">
 				<reportElement stretchType="ContainerHeight" x="250" y="11" width="170" height="12" uuid="4da143b4-4da1-4915-a84c-da111bc13bda">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6ee50bd3-6e9a-4575-a062-3273996160a1"/>
 				</reportElement>
