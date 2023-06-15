@@ -31,6 +31,7 @@ public class GastoGlobalFuenteMB extends BaseDirectReport {
 	private String cuenta;
 	private String partida;
 	private String fuenteF;
+	private Integer reporte;
 	private List<TcMes> listMes = new ArrayList<TcMes>();
 	private Boolean txt = Boolean.FALSE;
 
@@ -50,6 +51,7 @@ public class GastoGlobalFuenteMB extends BaseDirectReport {
 		jasperReporteName = "gastoGlobalFuente";
 		endFilename = jasperReporteName + ".pdf";
 
+		this.reporte = 0;
 		listMes = tcMesRepository.findAll();
 		if (!CollectionUtils.isEmpty(listMes)) {
 			mes = listMes.get(0).getMes();
@@ -68,9 +70,28 @@ public class GastoGlobalFuenteMB extends BaseDirectReport {
 		parameters.put("cuenta", cuenta);
 		parameters.put("ssscta", partida);
 		parameters.put("sscta", fuenteF);
+		parameters.put("sql", this.generaQuery());
 		return parameters;
 	}
 
+	private String generaQuery() {
+		String sql = "SELECT D.SSSCTA,\r\n"
+				+ "	SUM(D.CANPOL) CARGO,\r\n"
+				+ "	SUM(D.CANPOLH) ABONO ,\r\n"
+				+ "	SUM(D.CANPOL)-SUM(D.CANPOLH) DIF\r\n"
+				+ " FROM POLIDE D\r\n"
+				+ " WHERE "
+				+ (reporte == 1 ?  "D.MESPOL <= "+Integer.valueOf(mes)+" AND ":" D.MESPOL = "+Integer.valueOf(mes)+" AND ")
+				+ "	D.IDSECTOR = "+this.getUserDetails().getIdSector()+" AND \r\n"
+				+ "	D.CUENTA = '"+cuenta+"' AND \r\n"
+				+ "	D.SSSCTA LIKE  '"+partida+"%' AND\r\n"
+				+ "	D.SSCTA <>'' AND \r\n"
+				+ "	SUBSTR(D.SSCTA ,13,3) = '"+fuenteF+"'\r\n"
+				+ " GROUP BY\r\n"
+				+ "	D.SSSCTA";
+		System.out.println(":::::" + sql);
+		return sql;
+	}
 	@Override
 	public StreamedContent generaReporteSimple(int type) throws ReportValidationException {
 
@@ -204,6 +225,14 @@ public class GastoGlobalFuenteMB extends BaseDirectReport {
 
 	public void setConctbRepository(ConctbRepository conctbRepository) {
 		this.conctbRepository = conctbRepository;
+	}
+
+	public Integer getReporte() {
+		return reporte;
+	}
+
+	public void setReporte(Integer reporte) {
+		this.reporte = reporte;
 	}
 
 }
