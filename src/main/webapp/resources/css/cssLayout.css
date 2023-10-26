@@ -121,7 +121,7 @@ p.titleapp{margin:0; padding:0; font-size: 15px; font-weight: 600;color:black;}
 
 /*Adding EDOMEX Logo*/
 div#piensagrande{
-background:url("#{resource['images/logoEnGrande_small.png']}") no-repeat center;
+background:url("#{resource['images/dif_logo_colibriDifem.png']}") no-repeat center;
 height:124px;
 }
 
